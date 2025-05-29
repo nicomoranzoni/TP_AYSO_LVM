@@ -1,0 +1,85 @@
+    1  lsblk
+    2  sudo mount /dev/sr0 /mnt
+    3  ls /mnt
+    4  sudo sh /mnt/VBoxLinuxAdditions.run
+    5  sudo reboot
+    6  #Creo los usuarios
+    7  sudo useradd ana
+    8  Sudo visudo
+    9  sudo visudo
+   10  useradd beto
+   11  sudo visudo
+   12  usearadd beto
+   13  useradd beto
+   14  sudo userdel ana
+   15  #Creo los usuarios
+   16  Sudo adduser ana
+   17  sudo adduser ana
+   18  lsblk
+   19  #Creo los pv
+   20  sudo pvcreate /dev/sdb
+   21  sudo pvcreate /dev/sdc
+   22  sudo prvcreate /dev/sdd
+   23  sudo pvcreate /dev/sdd
+   24  #Creo grupo de volumen
+   25  sudo vgcreate nodocentral /dev/sdb
+   26  sudo vgcreate nodocentral /dev/sdc
+   27  sudo vgextend nodocentral /dev/sdc /dev/sdd
+   28  sudo pvs
+   29  sudo vgs
+   30  #Creo volumen logico sitios de 3gb
+   31  sudo lvcreate -L 3G -n sitios nodocentral
+   32  #Creo volumen logico salvas de 5gb
+   33  sudo lvcreate -L 5G -n salvas nodocentral
+   34  #Extiendo sitios a 4gb 
+   35  sudo lvextend -L 4G /dev/nodocentral/sitios
+   36  #Formateo VL con EXT4
+   37  sudo mks.ext4 /dev/nodocentral/sitios
+   38  sudo mkfs.ext4 /dev/nodocentral/sitios
+   39  sudo mkfs.ext4 /dev/nodocentral/salvas
+   40  #Creo los directorios para el montaje
+   41  sudo mkdir /mnt/sitios
+   42  sudo mkdir /mnt/salvas
+   43  sudo mount /dev/nodocentral/sitios /mnt/sitios
+   44  sudo mount /dev/nodocentral/salvas /mnt/salvas
+   45  echo "archivo de prueba" > /mnt/sitios/prueba.txt
+   46  sudo sh -c 'echo "Archivo de prueba" > /mnt/sitios/prueba.txt'
+   47  #Tuve que utilizar el comando sudo sh -c ya que no me permitia crear el echo "archivo de prueba" por permisos de usuario, es la forma que encontre
+   48  #desmontaje de volumenes
+   49  sudo umount dev/sitios
+   50  sudo umount /mnt/sitios
+   51  sudo umount /mnt/salvas
+   52  sudo lvremove /dev/nodocentral/sitios
+   53  sudo lvremove /dev/nodocentral/salvas
+   54  #eliminar grupo de volumen
+   55  sudo vgremove nodocentral
+   56  #Eliminar Volumenes fisicos
+   57  sudo pvremove /dev/sdb
+   58  sudo pvremove /dev/sdc
+   59  sudo pvremove /dev/sdd
+   60  #Particion disco 7GB
+   61  sudo fdisk /dev/sdd
+   62  #formateo las particiones
+   63  sblk
+   64  lsblk /dev/sdd
+   65  sudo mkfs.ext4 /dev/sdd1
+   66  sudo mkfs.ext4 /dev/sdd2
+   67  sudo mkfs.ext4 /dev/sdd3
+   68  sudo mkfs.ext4 /dev/sdd5
+   69  sudo mkfs.ext4 /dev/sdd6
+   70  sudo mkfs.ext4 /dev/sdd7
+   71  sudo mkdir -p /mnt/p1 /mnt/p2 /mnt/p3 /mnt/p4 /mnt/p5 /mnt/p6 
+   72  sudo mount /dev/sdd1 /mnt/p1
+   73  sudo mount /dev/sdd2 /mnt/p2
+   74  sudo mount /dev/sdd3 /mnt/p3
+   75  sudo mount /dev/sdd5 /mnt/p4
+   76  sudo mount /dev/sdd6 /mnt/p5
+   77  sudo mount /dev/sdd7 /mnt/p6
+   78  lsblk
+   79  #guardo el historial
+   80  history > history.txt
+   81  git clone https://github.com/nicomoranzoni/TP_AYSO_LVM.git
+   82  sudo apt install git
+   83  git clone https://github.com/nicomoranzoni/TP_AYSO_LVM.git
+   84  mkdir TP_AYSO_LVM
+   85  history > history.txt
